@@ -10,10 +10,6 @@ import dev.jl.outputstream.PecaRoupaOutputStream;
 import java.io.*;
 import java.util.List;
 
-/**
- * Classe para testar PecaRoupaOutputStream e PecaRoupaInputStream
- * Exercícios 2 e 3
- */
 public class App {
 
     public static void main(String[] args) {
@@ -21,21 +17,17 @@ public class App {
         PecaRoupa[] pecas = criarPecasTeste();
 
         // Define número de bytes para cada atributo
-        int[] bytesAtributos = {4, 100, 8}; // id(4), nome(100), preco(8)
+        int[] bytesAtributos = {4, 100, 8};
 
         System.out.println("=== TESTE DE STREAMS ===\n");
 
-        // Teste 1: Saída padrão (System.out)
+        // (System.out)
         System.out.println("1. Teste com System.out:");
         testeSystemOut(pecas, bytesAtributos);
 
-        // Teste 2: Arquivo (FileOutputStream)
+        //FileOutputStream
         System.out.println("\n2. Teste com Arquivo:");
         testeArquivo(pecas, bytesAtributos);
-
-        // Teste 3: Socket TCP será testado no servidor/cliente
-        System.out.println("\n3. Teste com Socket TCP:");
-        System.out.println("   Ver ServidorTCP e ClienteTCP para teste completo");
     }
 
     private static PecaRoupa[] criarPecasTeste() {
@@ -69,7 +61,7 @@ public class App {
             PecaRoupaOutputStream out = new PecaRoupaOutputStream(pecas, 3, bytesAtributos, fos);
             out.enviarPecas();
             out.close();
-            System.out.println("   ✓ Dados escritos com sucesso!");
+            System.out.println("   Dados escritos com sucesso!");
 
             // Leitura do arquivo
             System.out.println("\n   Lendo do arquivo: " + arquivo);
@@ -78,9 +70,7 @@ public class App {
             List<PecaRoupa> pecasLidas = in.lerPecas();
             in.close();
 
-            System.out.println("   ✓ Dados lidos com sucesso!");
-            System.out.println("   Total de peças lidas: " + pecasLidas.size());
-            System.out.println("\n   Peças recuperadas:");
+            System.out.println("   Dados lidos com sucesso!\n");
             for (PecaRoupa peca : pecasLidas) {
                 System.out.println("   - " + peca);
             }

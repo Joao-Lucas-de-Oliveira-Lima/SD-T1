@@ -2,9 +2,6 @@ package dev.jl.models;
 
 import java.io.Serializable;
 
-/**
- * Superclasse que representa uma peça de roupa
- */
 public class PecaRoupa implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +23,6 @@ public class PecaRoupa implements Serializable {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

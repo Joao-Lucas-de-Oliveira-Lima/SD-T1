@@ -7,20 +7,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Subclasse de InputStream que lê dados de PecaRoupa
- * Exercício 3: Subclasse de InputStream
- */
 public class PecaRoupaInputStream extends InputStream {
     private InputStream origem;
     private int numeroPecas;
     private int[] bytesAtributos;
     private boolean headerLido;
 
-    /**
-     * Construtor conforme especificação do exercício
-     * @param origem InputStream de onde as sequências de bytes serão lidas
-     */
+
     public PecaRoupaInputStream(InputStream origem) {
         this.origem = origem;
         this.bytesAtributos = new int[3]; // id, nome, preco
@@ -42,9 +35,6 @@ public class PecaRoupaInputStream extends InputStream {
         return origem.read(b, off, len);
     }
 
-    /**
-     * Lê o cabeçalho com informações sobre a transmissão
-     */
     private void lerHeader() throws IOException {
         if (headerLido) return;
 
@@ -62,9 +52,6 @@ public class PecaRoupaInputStream extends InputStream {
         headerLido = true;
     }
 
-    /**
-     * Lê todas as peças de roupa
-     */
     public List<PecaRoupa> lerPecas() throws IOException {
         lerHeader();
 
@@ -80,9 +67,6 @@ public class PecaRoupaInputStream extends InputStream {
         return pecas;
     }
 
-    /**
-     * Lê uma peça individual
-     */
     private PecaRoupa lerPeca() throws IOException {
         // Lê ID
         int id = lerInteiro(bytesAtributos[0]);
@@ -97,9 +81,7 @@ public class PecaRoupaInputStream extends InputStream {
         return new PecaRoupa(id, nome, preco, "", "", 0);
     }
 
-    /**
-     * Lê um inteiro usando o número especificado de bytes
-     */
+
     private int lerInteiro(int numBytes) throws IOException {
         int valor = 0;
         for (int i = numBytes - 1; i >= 0; i--) {
@@ -110,9 +92,6 @@ public class PecaRoupaInputStream extends InputStream {
         return valor;
     }
 
-    /**
-     * Lê uma String usando o número especificado de bytes
-     */
     private String lerString(int numBytes) throws IOException {
         // Lê tamanho da string (4 bytes)
         int tamanho = lerInteiro(4);
@@ -132,9 +111,6 @@ public class PecaRoupaInputStream extends InputStream {
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
-    /**
-     * Lê um double usando o número especificado de bytes
-     */
     private double lerDouble(int numBytes) throws IOException {
         long bits = 0;
         for (int i = numBytes - 1; i >= 0; i--) {
