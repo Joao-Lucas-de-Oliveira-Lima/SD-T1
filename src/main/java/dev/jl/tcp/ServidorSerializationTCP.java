@@ -11,7 +11,7 @@ import java.net.Socket;
  * Solução para o Problema 4: Servidor TCP usando Serialização Nativa (Object Streams).
  * Implementa Desempacotamento de Request e Empacotamento de Reply.
  */
-public class ServitorSerializationTCP {
+public class ServidorSerializationTCP {
     private static final int PORT = 12345;
 
     private static Loja loja = new Loja();
