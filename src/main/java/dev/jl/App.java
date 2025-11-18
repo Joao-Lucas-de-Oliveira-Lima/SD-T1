@@ -55,7 +55,7 @@ public class App {
         String arquivo = "pecas_roupa.dat";
 
         try {
-            // Escrita no arquivo
+            // Escrita
             System.out.println("   Escrevendo no arquivo: " + arquivo);
             FileOutputStream fos = new FileOutputStream(arquivo);
             PecaRoupaOutputStream out = new PecaRoupaOutputStream(pecas, 3, bytesAtributos, fos);
@@ -63,7 +63,7 @@ public class App {
             out.close();
             System.out.println("   Dados escritos com sucesso!");
 
-            // Leitura do arquivo
+            // Leitura
             System.out.println("\n   Lendo do arquivo: " + arquivo);
             FileInputStream fis = new FileInputStream(arquivo);
             PecaRoupaInputStream in = new PecaRoupaInputStream(fis);

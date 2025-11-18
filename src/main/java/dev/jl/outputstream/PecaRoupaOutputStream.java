@@ -5,10 +5,6 @@ import dev.jl.models.PecaRoupa;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
-/**
- * Subclasse de OutputStream que envia dados de PecaRoupa
- * Exercício 2: Subclasse de OutputStream
- */
 public class PecaRoupaOutputStream extends OutputStream {
     private OutputStream destino;
     private PecaRoupa[] pecas;
@@ -17,13 +13,6 @@ public class PecaRoupaOutputStream extends OutputStream {
     private int indiceAtual;
     private boolean headerEnviado;
 
-    /**
-     * Construtor conforme especificação do exercício
-     * @param pecas Array de objetos a serem transmitidos
-     * @param numeroPecas Número de objetos que terão dados enviados
-     * @param bytesAtributos Array com número de bytes para cada atributo (id, nome, preco)
-     * @param destino OutputStream de destino
-     */
     public PecaRoupaOutputStream(PecaRoupa[] pecas, int numeroPecas, int[] bytesAtributos, OutputStream destino) {
         this.pecas = pecas;
         this.numeroPecas = Math.min(numeroPecas, pecas.length);
@@ -48,9 +37,6 @@ public class PecaRoupaOutputStream extends OutputStream {
         destino.write(b, off, len);
     }
 
-    /**
-     * Envia o cabeçalho com informações sobre a transmissão
-     */
     private void enviarHeader() throws IOException {
         if (headerEnviado) return;
 
@@ -69,9 +55,6 @@ public class PecaRoupaOutputStream extends OutputStream {
         headerEnviado = true;
     }
 
-    /**
-     * Envia todas as peças de roupa
-     */
     public void enviarPecas() throws IOException {
         enviarHeader();
 
@@ -82,9 +65,6 @@ public class PecaRoupaOutputStream extends OutputStream {
         destino.flush();
     }
 
-    /**
-     * Envia uma peça individual
-     */
     private void enviarPeca(PecaRoupa peca) throws IOException {
         // Envia ID (bytesAtributos[0] bytes)
         enviarInteiro(peca.getId(), bytesAtributos[0]);
@@ -96,18 +76,12 @@ public class PecaRoupaOutputStream extends OutputStream {
         enviarDouble(peca.getPreco(), bytesAtributos[2]);
     }
 
-    /**
-     * Envia um inteiro usando o número especificado de bytes
-     */
     private void enviarInteiro(int valor, int numBytes) throws IOException {
         for (int i = numBytes - 1; i >= 0; i--) {
             destino.write((valor >> (i * 8)) & 0xFF);
         }
     }
 
-    /**
-     * Envia uma String usando o número especificado de bytes
-     */
     private void enviarString(String str, int numBytes) throws IOException {
         byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
         int tamanho = Math.min(bytes.length, numBytes - 4);
@@ -124,9 +98,6 @@ public class PecaRoupaOutputStream extends OutputStream {
         }
     }
 
-    /**
-     * Envia um double usando o número especificado de bytes
-     */
     private void enviarDouble(double valor, int numBytes) throws IOException {
         long bits = Double.doubleToLongBits(valor);
         for (int i = numBytes - 1; i >= 0; i--) {

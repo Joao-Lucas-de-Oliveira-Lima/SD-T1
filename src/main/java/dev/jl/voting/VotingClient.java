@@ -192,7 +192,7 @@ public class VotingClient {
         out.writeUTF("REMOVE_CANDIDATE");
         out.writeInt(id);
 
-        String status = in.readUTF();
+        //String status = in.readUTF();
         String message = in.readUTF();
         System.out.println(message);
     }
@@ -204,7 +204,7 @@ public class VotingClient {
         out.writeUTF("BROADCAST");
         out.writeUTF(message);
 
-        String status = in.readUTF();
+        //String status = in.readUTF();
         String response = in.readUTF();
         System.out.println(response);
     }
@@ -225,7 +225,7 @@ public class VotingClient {
                 System.out.print("Escolha: ");
             }
         } catch (IOException e) {
-            // Thread
+
         }
     }
 

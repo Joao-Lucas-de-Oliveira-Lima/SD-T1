@@ -68,16 +68,16 @@ public class PecaRoupaInputStream extends InputStream {
     }
 
     private PecaRoupa lerPeca() throws IOException {
-        // Lê ID
+        // ID
         int id = lerInteiro(bytesAtributos[0]);
 
-        // Lê Nome
+        // Nome
         String nome = lerString(bytesAtributos[1]);
 
-        // Lê Preço
+        // Preço
         double preco = lerDouble(bytesAtributos[2]);
 
-        // Cria uma PecaRoupa básica com os dados lidos
+        // PecaRoupa
         return new PecaRoupa(id, nome, preco, "", "", 0);
     }
 
@@ -93,17 +93,14 @@ public class PecaRoupaInputStream extends InputStream {
     }
 
     private String lerString(int numBytes) throws IOException {
-        // Lê tamanho da string (4 bytes)
         int tamanho = lerInteiro(4);
 
-        // Lê os bytes da string
         byte[] bytes = new byte[tamanho];
         int lidos = origem.read(bytes);
         if (lidos != tamanho) {
             throw new IOException("Não foi possível ler todos os bytes da string");
         }
 
-        // Lê os bytes de padding
         for (int i = tamanho; i < numBytes - 4; i++) {
             origem.read();
         }
