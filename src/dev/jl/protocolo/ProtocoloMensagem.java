@@ -13,6 +13,7 @@ import java.util.Map;
  *
  * Resposta: texto simples (mensagem human-readable)
  */
+
 public class ProtocoloMensagem {
 
     public static byte[] processar(byte[] mensagemBytes, Loja loja) {

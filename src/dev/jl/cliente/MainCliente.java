@@ -1,7 +1,6 @@
 package dev.jl.cliente;
 
 import dev.jl.remote.LojaRemota;
-
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
@@ -74,7 +73,6 @@ public class MainCliente {
         }
     }
 
-    // pequenas proteções para evitar ; ou , na string que quebraria parsing simples
     private static String escape(String s) {
         return s.replace(";", "").replace(",", "").replace(":", "");
     }
